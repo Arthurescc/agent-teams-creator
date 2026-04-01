@@ -38,6 +38,44 @@
 - 不使用 skill：结果更容易停留在“我看了哪些文件”或泛泛 swarm 描述。
 - 使用 `$agent-teams-creator`：结果会稳定讲清 coordination spine、协议消息类型、task board 模型、spawn modes、隔离策略和 verification 规则。
 
+## 更直观的前后差异
+
+### 不使用 skill
+
+- 输出可能停留在阅读过程汇报
+- “multi-agent” 很容易被讲成泛化 swarm
+- task board、mailbox、coordinator 三者的边界容易模糊
+- worktree 隔离也容易被说成默认行为
+
+### 使用 `$agent-teams-creator`
+
+- 输出会被强制拉回真正的 team runtime 机制
+- task board 会被明确为共享状态
+- mailbox 会被明确为传输和协议总线
+- team lead / coordinator 会被明确为控制平面
+- 默认共享工作区与可选 worktree 隔离会被分开说明
+- verification 会被明确成独立阶段，而不是实现 worker 自我宣布完成
+
+## 案例
+
+### 场景：解释 Claude Code 的 agent teams 机制，并设计一个类似系统
+
+**baseline**
+- 有的结果只停在“我读了这些文件”
+- 有的结果虽然能回答，但仍然容易把关键协议细节讲得太泛
+
+**使用 skill 后**
+- 会稳定覆盖：
+  - coordination spine
+  - 结构化消息类型
+  - spawn modes
+  - teammate identity
+  - task board 的 owner / blocker 模型
+  - coordinator 角色
+  - isolation stance
+  - verification stance
+  - 源码事实与推断边界
+
 ## 安装方式
 
 ### Windows
@@ -85,6 +123,10 @@ assets/
 - [sanbuphy/claude-code-source-code](https://github.com/sanbuphy/claude-code-source-code)
 
 与 Anthropic 无官方关联。
+
+## 更多技能
+
+总导航页见：[codex-skills-hub](https://github.com/Arthurescc/codex-skills-hub)
 
 ## License
 

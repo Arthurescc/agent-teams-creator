@@ -68,6 +68,48 @@ Observed difference:
 
 That means the skill materially improves answer shape, not just wording.
 
+## Before / After
+
+### Without `agent-teams-creator`
+
+- answers can stall at file-reading summaries
+- "multi-agent" gets described too loosely
+- the difference between task board, mailbox, and coordinator is often blurred
+- worktree isolation is easy to overstate or misstate
+
+### With `agent-teams-creator`
+
+- the answer is forced toward the real team runtime
+- the task board is identified as shared state
+- the mailbox is identified as transport and protocol bus
+- the lead is identified as control-plane authority
+- default shared-workspace collaboration is separated from optional worktree isolation
+- verification is treated as an independent phase, not worker self-certification
+
+## Case Study
+
+### Case: "Explain Claude Code's agent teams runtime and how to build one"
+
+**Baseline behavior**
+- one baseline run stopped at "I inspected these files"
+- another broad answer still risked collapsing protocol details into generic swarm language
+
+**With the skill**
+- the answer explicitly covered:
+  - coordination spine
+  - structured message types
+  - spawn modes
+  - teammate identity
+  - task-board ownership/blockers
+  - coordinator role
+  - isolation stance
+  - verification stance
+  - source-backed vs inferred behavior
+
+### Why that matters
+
+That moves the output from "interesting analysis" to "something you can actually build from."
+
 ## Quick Start
 
 Clone or copy this repository into your Codex skills directory:
@@ -146,6 +188,10 @@ It is not affiliated with Anthropic.
 ## Chinese Documentation
 
 See [README.zh-CN.md](README.zh-CN.md).
+
+## More Skills
+
+Browse the collection page: [codex-skills-hub](https://github.com/Arthurescc/codex-skills-hub)
 
 ## License
 
