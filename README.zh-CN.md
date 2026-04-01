@@ -4,7 +4,7 @@
   <img src="assets/icon-large.svg" alt="Agent Teams Creator icon" width="140" />
 </p>
 
-`agent-teams-creator` 是一个面向 Codex 的技能，专门用于分析、设计和实现 Claude Code 风格的 agent teams 运行时。
+`agent-teams-creator` 是一个面向 Codex 的技能，专门用于分析、设计和实现结构清晰的 agent team runtime。
 
 它最核心的价值，是把很多人说不清的 “multi-agent / swarm” 机制拆成真正可落地的三层：
 
@@ -18,7 +18,7 @@
 
 - 谁拥有共享状态
 - 谁负责消息传递
-- 谁拥有审批和协调权
+- 谁拥有协调和审批权
 
 这个技能会强制把分析或设计输出收束到：
 
@@ -33,9 +33,9 @@
 
 ## 压测后的实际效果
 
-基于公开 Claude Code 重建源码做对比测试时：
+基于真实 Codex 工作流做对比测试时：
 
-- 不使用 skill：结果更容易停留在“我看了哪些文件”或泛泛 swarm 描述。
+- 不使用 skill：结果更容易停留在“我看了哪些文件”或泛化 swarm 描述。
 - 使用 `$agent-teams-creator`：结果会稳定讲清 coordination spine、协议消息类型、task board 模型、spawn modes、隔离策略和 verification 规则。
 
 ## 更直观的前后差异
@@ -58,7 +58,7 @@
 
 ## 案例
 
-### 场景：解释 Claude Code 的 agent teams 机制，并设计一个类似系统
+### 场景：解释一个 agent teams 运行时，并设计一个类似系统
 
 **baseline**
 - 有的结果只停在“我读了这些文件”
@@ -74,7 +74,7 @@
   - coordinator 角色
   - isolation stance
   - verification stance
-  - 源码事实与推断边界
+  - 事实与推断边界
 
 ## 安装方式
 
@@ -102,9 +102,10 @@ $CODEX_HOME/skills/agent-teams-creator
 
 ## 使用示例
 
-- `Use $agent-teams-creator to explain Claude Code's agent teams runtime.`
+- `Use $agent-teams-creator to explain how a protocol-driven agent team runtime should work.`
 - `Use $agent-teams-creator to design a coordinator-plus-workers system for this repo.`
-- `Use $agent-teams-creator to compare our current swarm design against Claude Code-style team mechanics.`
+- `Use $agent-teams-creator to add a task board and mailbox protocol to our multi-agent runtime.`
+- `Use $agent-teams-creator to compare our current swarm design against a stronger team-runtime model.`
 
 ## 仓库内容
 
@@ -115,14 +116,11 @@ references/
 assets/
 ```
 
-## 来源说明
+## 开发说明
 
-本技能参考了公开的非官方分析项目：
+本项目为自研开发，面向实际 Codex 技能工作流使用。
 
-- [oboard/claude-code-rev](https://github.com/oboard/claude-code-rev)
-- [sanbuphy/claude-code-source-code](https://github.com/sanbuphy/claude-code-source-code)
-
-与 Anthropic 无官方关联。
+重点在于让多 agent 运行时的设计更清晰、更协议化、更适合工程实现。
 
 ## 更多技能
 

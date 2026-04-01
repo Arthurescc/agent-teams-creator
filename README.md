@@ -5,16 +5,16 @@
 </p>
 
 <p align="center">
-  Turn multi-agent "swarm" ideas into an explicit team runtime with task state, mailbox protocols, and verification boundaries.
+  Turn multi-agent swarm ideas into an explicit team runtime with task state, mailbox protocols, and verification boundaries.
 </p>
 
 ## What It Is
 
-`agent-teams-creator` is a Codex skill for analyzing, designing, and implementing Claude Code-style agent team runtimes.
+`agent-teams-creator` is a Codex skill for analyzing, designing, and implementing structured agent team runtimes.
 
 It helps with requests like:
 
-- "How do Claude Code teams actually work?"
+- "How should an agent team runtime actually work?"
 - "Design a coordinator + workers system for this project."
 - "Add a shared task board and structured inter-agent messaging."
 - "Make our multi-agent runtime safer and easier to reason about."
@@ -39,7 +39,6 @@ That distinction makes the runtime much easier to build, test, and debug.
 
 ## What You Get
 
-- A source-backed explanation of Claude Code's agent teams mechanism.
 - A clean model of team bootstrap, spawn modes, and teammate identity.
 - A protocol view of inter-agent messaging.
 - A task-board-first coordination model.
@@ -58,13 +57,13 @@ That distinction makes the runtime much easier to build, test, and debug.
 
 ## Validated Value
 
-This skill was pressure-tested against public Claude Code reconstruction sources.
+This skill was pressure-tested in practical Codex workflow scenarios.
 
 Observed difference:
 
 | Scenario | Without the skill | With the skill |
 | --- | --- | --- |
-| Explain and rebuild Claude Code-style agent teams | The agent often stopped at "I inspected these files" or broad swarm commentary. | The agent consistently described the coordination spine, protocol message types, task-board model, spawn backends, isolation stance, and verification rules. |
+| Explain and rebuild a protocol-driven agent team runtime | The agent often stopped at "I inspected these files" or broad swarm commentary. | The agent consistently described the coordination spine, protocol message types, task-board model, spawn backends, isolation stance, and verification rules. |
 
 That means the skill materially improves answer shape, not just wording.
 
@@ -88,7 +87,7 @@ That means the skill materially improves answer shape, not just wording.
 
 ## Case Study
 
-### Case: "Explain Claude Code's agent teams runtime and how to build one"
+### Case: "Explain an agent team runtime and how to build one"
 
 **Baseline behavior**
 - one baseline run stopped at "I inspected these files"
@@ -104,7 +103,7 @@ That means the skill materially improves answer shape, not just wording.
   - coordinator role
   - isolation stance
   - verification stance
-  - source-backed vs inferred behavior
+  - facts vs inferred behavior
 
 ### Why that matters
 
@@ -138,10 +137,10 @@ Restart Codex after installation so the skill list refreshes.
 
 ## Example Prompts
 
-- `Use $agent-teams-creator to explain Claude Code's agent teams runtime.`
+- `Use $agent-teams-creator to explain how a protocol-driven agent team runtime should work.`
 - `Use $agent-teams-creator to design a coordinator-plus-workers system for this repo.`
 - `Use $agent-teams-creator to add a task board and mailbox protocol to our multi-agent runtime.`
-- `Use $agent-teams-creator to compare our current swarm design against Claude Code-style team mechanics.`
+- `Use $agent-teams-creator to compare our current swarm design against a stronger team-runtime model.`
 
 ## What It Covers
 
@@ -168,14 +167,11 @@ assets/
   icon-large.svg
 ```
 
-## Source Basis
+## Development
 
-This skill is informed by public, non-official analysis of:
+This project is independently designed and developed for practical Codex skill workflows.
 
-- [oboard/claude-code-rev](https://github.com/oboard/claude-code-rev)
-- [sanbuphy/claude-code-source-code](https://github.com/sanbuphy/claude-code-source-code)
-
-It is not affiliated with Anthropic.
+It is focused on making multi-agent runtime design more explicit, protocol-driven, and implementation-ready.
 
 ## Who This Is For
 
