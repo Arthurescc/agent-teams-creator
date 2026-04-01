@@ -1,0 +1,7 @@
+interface:
+  display_name: "Agent Teams Creator"
+  short_description: "Analyze and design Claude Code-style agent team runtimes."
+  icon_small: "./assets/icon-small.svg"
+  icon_large: "./assets/icon-large.svg"
+  brand_color: "#0F766E"
+  default_prompt: "Use $agent-teams-creator to analyze or build a Claude Code-style agent teams harness for this codebase."
