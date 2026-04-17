@@ -10,7 +10,9 @@
 
 ## What It Is
 
-`agent-teams-creator` is a Codex skill for analyzing, designing, and implementing structured agent team runtimes.
+`agent-teams-creator` is an open `SKILL.md`-based agent skill for analyzing, designing, and implementing structured agent team runtimes.
+
+It is meant to be reusable across Codex, OpenClaw, Claude Code, Hermes Agent, and other coding agents that can ingest skill-style Markdown instructions. This is not a Codex-only repo.
 
 It helps with requests like:
 
@@ -18,6 +20,14 @@ It helps with requests like:
 - "Design a coordinator + workers system for this project."
 - "Add a shared task board and structured inter-agent messaging."
 - "Make our multi-agent runtime safer and easier to reason about."
+
+## Compatibility
+
+This repository uses the portable `SKILL.md` pattern that now shows up across multiple agent ecosystems.
+
+- Works well in: Codex, OpenClaw, Claude Code, Hermes Agent
+- Usually portable to: agents that support custom skills, instruction packs, or Markdown playbooks
+- Best fit: coordinator-worker systems, protocol-driven swarms, verifier-based teams, shared task boards, and mailbox-driven runtimes
 
 ## Why It Matters
 
@@ -44,6 +54,16 @@ That distinction makes the runtime much easier to build, test, and debug.
 - A task-board-first coordination model.
 - Clear guidance on default isolation vs optional worktree isolation.
 - Strong verification rules so implementation workers do not self-certify success.
+
+## What People Usually Need Clarified
+
+Multi-agent repos often sound impressive but stay blurry on the mechanism. This skill is for the moment when you need the README or design answer to become buildable:
+
+- what is shared state vs message transport
+- who has authority to assign, approve, or block work
+- when isolation is required and when shared workspace is acceptable
+- how verifier flows differ from worker flows
+- how to describe all this without collapsing it into vague "swarm" language
 
 ## Key Capabilities
 
@@ -111,7 +131,18 @@ That moves the output from "interesting analysis" to "something you can actually
 
 ## Quick Start
 
-Clone or copy this repository into your Codex skills directory:
+Clone or copy this repository into your agent skills directory.
+
+### Common skill locations
+
+```text
+Codex:       ~/.codex/skills/agent-teams-creator
+Claude Code: ~/.claude/skills/agent-teams-creator
+OpenClaw:    ~/.openclaw/skills/agent-teams-creator
+Hermes:      ~/.hermes/skills/agent-teams-creator
+```
+
+If your tool prefers project-local skills, place the repo there and keep `SKILL.md` at the skill root.
 
 ### Windows
 
@@ -127,13 +158,22 @@ git clone https://github.com/Arthurescc/agent-teams-creator \
   "${HOME}/.codex/skills/agent-teams-creator"
 ```
 
+Then copy or symlink the same folder into any additional agent's skills directory if you use multiple tools.
+
 If you use `CODEX_HOME`, install it under:
 
 ```text
 $CODEX_HOME/skills/agent-teams-creator
 ```
 
-Restart Codex after installation so the skill list refreshes.
+Restart or refresh your agent after installation so the skill list refreshes.
+
+### Claude Code example
+
+```bash
+git clone https://github.com/Arthurescc/agent-teams-creator \
+  "${HOME}/.claude/skills/agent-teams-creator"
+```
 
 ## Example Prompts
 
@@ -154,6 +194,15 @@ Restart Codex after installation so the skill list refreshes.
 - verifier flow
 - facts vs inferred/gated behavior
 
+## What Changes After You Use It
+
+Instead of vague multi-agent commentary, you should get:
+
+- a coordination spine you can diagram
+- a protocol you can implement
+- role and permission boundaries you can test
+- a verification path that does not depend on workers grading themselves
+
 ## Repository Layout
 
 ```text
@@ -169,7 +218,7 @@ assets/
 
 ## Development
 
-This project is independently designed and developed for practical Codex skill workflows.
+This project is independently designed and developed for practical agent-skill workflows across multiple coding agents.
 
 It is focused on making multi-agent runtime design more explicit, protocol-driven, and implementation-ready.
 
@@ -188,6 +237,20 @@ See [README.zh-CN.md](README.zh-CN.md).
 ## More Skills
 
 Browse the collection page: [codex-skills-hub](https://github.com/Arthurescc/codex-skills-hub)
+
+## FAQ
+
+### Is this only for Codex?
+
+No. It is written in the open `SKILL.md` style and is intended to be reused across Codex, OpenClaw, Claude Code, Hermes Agent, and similar tools.
+
+### Is this only for greenfield multi-agent systems?
+
+No. It is also useful when refactoring an existing swarm, coordinator-worker runtime, reviewer loop, or shared-task orchestration system.
+
+### Why does the README talk so much about task board vs mailbox vs coordinator?
+
+Because that separation is usually the missing piece. Once state, transport, and authority are explicit, the system becomes much easier to explain, implement, and verify.
 
 ## License
 
