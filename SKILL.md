@@ -1,6 +1,6 @@
 ---
 name: agent-teams-creator
-description: Analyze, design, or implement Claude Code-style agent team runtimes. Use when the user wants a coordinator-plus-workers system with shared tasks, mailbox messaging, plan approval, teammate permissions, worktree isolation, or verifier-style team workflows.
+description: Analyze, design, or implement protocol-driven agent team runtimes. Portable across Codex, OpenClaw, Claude Code, Hermes Agent, and similar SKILL.md-compatible coding agents. Use when the user wants a coordinator-plus-workers system with shared tasks, mailbox messaging, plan approval, teammate permissions, worktree isolation, or verifier-style team workflows.
 ---
 
 # Agent Teams Creator

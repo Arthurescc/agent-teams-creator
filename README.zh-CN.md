@@ -4,13 +4,23 @@
   <img src="assets/icon-large.svg" alt="Agent Teams Creator icon" width="140" />
 </p>
 
-`agent-teams-creator` 是一个面向 Codex 的技能，专门用于分析、设计和实现结构清晰的 agent team runtime。
+`agent-teams-creator` 是一个基于开放 `SKILL.md` 约定的 agent skill，专门用于分析、设计和实现结构清晰的 agent team runtime。
+
+它不是只给 Codex 使用的仓库，也适合 OpenClaw、Claude Code、Hermes Agent，以及其他能够读取 skill 式 Markdown 指令的智能体工具。
 
 它最核心的价值，是把很多人说不清的 “multi-agent / swarm” 机制拆成真正可落地的三层：
 
 - `task board = 状态`
 - `mailbox = 传输`
 - `coordinator / team lead = 控制平面`
+
+## 兼容性
+
+这个仓库使用的是更通用的 `SKILL.md` 技能写法，适合在不同智能体工具之间复用。
+
+- 直接适配较好的工具：Codex、OpenClaw、Claude Code、Hermes Agent
+- 一般也容易迁移到：支持自定义 skills / 指令包 / Markdown playbook 的其他智能体工具
+- 最适合的任务：coordinator-worker 系统、protocol-driven swarm、shared task board、mailbox-driven runtime、verifier 流程
 
 ## 它解决什么问题
 
@@ -30,6 +40,16 @@
 - coordinator role
 - isolation stance
 - verifier flow
+
+## 大多数人真正需要它讲清楚的点
+
+很多多 agent 项目看起来很热闹，但机制其实没说清楚。这个 skill 的价值就在于把这些最容易糊掉的点讲明白：
+
+- 什么是共享状态，什么是消息传递
+- 谁有分配、审批、阻塞任务的权限
+- 什么情况下必须隔离，什么情况下共享工作区就够了
+- verifier 为什么不能和实现 worker 混成一个角色
+- 怎么避免把系统描述成空泛的 “swarm”
 
 ## 压测后的实际效果
 
@@ -78,6 +98,19 @@
 
 ## 安装方式
 
+把仓库克隆到你的技能目录即可。
+
+### 常见技能目录
+
+```text
+Codex:       ~/.codex/skills/agent-teams-creator
+Claude Code: ~/.claude/skills/agent-teams-creator
+OpenClaw:    ~/.openclaw/skills/agent-teams-creator
+Hermes:      ~/.hermes/skills/agent-teams-creator
+```
+
+如果你的工具更偏向项目内 skills 目录，也可以直接把本仓库放进去，只要保持 `SKILL.md` 在 skill 根目录。
+
 ### Windows
 
 ```powershell
@@ -92,13 +125,22 @@ git clone https://github.com/Arthurescc/agent-teams-creator \
   "${HOME}/.codex/skills/agent-teams-creator"
 ```
 
+如果你同时使用多个智能体，可以把同一个目录复制或软链接到其他 agent 的技能目录。
+
 如果你使用 `CODEX_HOME`，请安装到：
 
 ```text
 $CODEX_HOME/skills/agent-teams-creator
 ```
 
-安装后重启 Codex，让技能列表刷新。
+安装后重启或刷新对应智能体，让技能列表刷新。
+
+### Claude Code 安装示例
+
+```bash
+git clone https://github.com/Arthurescc/agent-teams-creator \
+  "${HOME}/.claude/skills/agent-teams-creator"
+```
 
 ## 使用示例
 
@@ -116,15 +158,38 @@ references/
 assets/
 ```
 
+## 使用后最直观的变化
+
+相比泛泛而谈的 multi-agent 描述，使用这个 skill 后，输出通常会更像：
+
+- 可以画出来的 coordination spine
+- 可以实现的 protocol
+- 可以测试的角色边界和权限边界
+- 不依赖 worker 自我验收的 verification 路径
+
 ## 开发说明
 
-本项目为自研开发，面向实际 Codex 技能工作流使用。
+本项目为自研开发，面向多种 coding agent 的实际技能工作流使用。
 
 重点在于让多 agent 运行时的设计更清晰、更协议化、更适合工程实现。
 
 ## 更多技能
 
 总导航页见：[codex-skills-hub](https://github.com/Arthurescc/codex-skills-hub)
+
+## FAQ
+
+### 这是只给 Codex 用的吗？
+
+不是。它采用开放的 `SKILL.md` 结构，目标就是尽量在 Codex、OpenClaw、Claude Code、Hermes Agent 这类工具之间复用。
+
+### 只能用来从零做 multi-agent 系统吗？
+
+不是。你已经有 swarm、coordinator-worker、reviewer loop、shared-task orchestration 系统时，也很适合拿它来重构和梳理机制。
+
+### 为什么一直强调 task board、mailbox、coordinator 的区分？
+
+因为这通常就是最关键、也最容易被说糊的地方。把状态、传输、控制权分开之后，系统会更容易设计、实现和验证。
 
 ## License
 
